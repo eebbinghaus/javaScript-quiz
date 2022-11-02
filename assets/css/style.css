@@ -1,0 +1,72 @@
+main {
+  display: flex;
+  font-family: "Suez One", serif;
+  justify-content: center;
+  position: relative;
+}
+
+h2 {
+  color: #7f2982;
+  text-align: center;
+  text-shadow: 3px 2px 4px #ffb100;
+  font-size: 55px;
+}
+
+.card {
+  display: block;
+  background-color: #c2e7da;
+  border: 3px solid #7f2982;
+  border-radius: 8px;
+  box-shadow: rgb(60 64 67 / 30%) 0 1px 2px 0, rgb(60 64 67 / 15%) 0 1px 3px 1px;
+  margin: 40px auto;
+  padding: 20px;
+  width: 60vw;
+  height: 60vh;
+}
+
+p {
+  color: #7f2982;
+  font-size: 25px;
+}
+
+#start {
+  font-family: "Suez One", serif;
+  display: flex;
+  background-color: #ffb100;
+  border: 2px solid #7f2982;
+  box-shadow: 2px 2px 2px #7f2982;
+  border-radius: 8px;
+  color: #7f2982;
+  cursor: pointer;
+  font-size: 25px;
+  letter-spacing: 0.21px;
+  line-height: 16px;
+  max-width: 255px;
+  padding: 20px 52px;
+  text-align: center;
+  margin: 10px auto;
+}
+#possible,
+#next {
+  visibility: hidden;
+}
+
+#possible button,
+#next {
+  font-family: "Suez One", serif;
+  font-size: 22px;
+  display: flex;
+  background-color: #ffb100;
+  border: 2px solid #7f2982;
+  box-shadow: 2px 2px 2px #7f2982;
+  border-radius: 8px;
+  color: #7f2982;
+  cursor: pointer;
+  margin: 5px 0px;
+}
+
+.next {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
