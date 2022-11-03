@@ -15,16 +15,25 @@
   </head>
   <body>
     <main class="card">
-      <div id="score"></div>
+      <div id="scoreStart">User Score: <span id="score"></span></div>
       <h2>JavaScript Quiz</h2>
       <p id="para">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. A asperiores
-        quam aperiam in nemo nisi labore totam tempore suscipit enim eius,
-        exercitationem temporibus, quibusdam deserunt itaque accusamus dolores
-        voluptate? Praesentium eius deserunt et atque maxime quidem, itaque quo
-        minus. Nemo consequuntur numquam repellendus tempora in magnam? Amet
-        ipsa corporis totam?
+        Welcome to my JavaScript quiz! Answer as many questions as you can
+        before the timer runs out! Correct answers are worth 10 points each, but
+        be careful because any wrong answers will subtract time from the timer!
       </p>
+
+      <div id="userFinal">Final Score: <span id="finalScore"></span></div>
+      <form action="">
+        <input
+          type="text"
+          name="userName"
+          id="userName"
+          placeholder="username"
+        />
+        <button type="submitScore" class="submitScore" id="saveScore">Save</button>
+      </form>
+
       <div id="possible">
         <button id="choice1"></button>
         <button id="choice2"></button>

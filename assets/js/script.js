@@ -8,73 +8,108 @@ var choice4 = document.getElementById("choice4");
 var response = document.getElementById("response");
 var next = document.getElementById("next");
 var userScore = document.getElementById("score");
+var finalScore = document.getElementById("finalScore");
+var scoreStart = document.getElementById("scoreStart");
+var saveScore = document.getElementById("saveScore")
 var score = 0;
+var indexTracker = 0;
 var questionArr = [
   {
-    title: "What color is the sky?",
-    choices: ["1. blue", "2. red", "3. yellow", "4. green"],
-    answer: "blue",
+    title: "JavaScript arrays are written with ____ brackets?",
+    choices: [" {} ", " <> ", " () ", " [] "],
+    answer: " [] ",
   },
   {
-    title: "What color is grass?",
-    choices: ["1. red", "2. blue", "3. green", "4. yellow"],
-    answer: "green",
+    title: "When multiplying in JavaScript we use which operator ____?",
+    choices: [" x ", " * ", " % ", " / "],
+    answer: " * ",
+  },
+  {
+    title: "We seperate JavaScript statements using _____?",
+    choices: ["semicolons ;", "forward slashes /", "commas ,", "colons :"],
+    answer: "semicolons ;",
+  },
+  {
+    title: "Single line comments in JavaScript start with _____?",
+    choices: [
+      "round brackets ()",
+      "curly brackets {}",
+      "forward slashes //",
+      "exclamation marks !!",
+    ],
+    answer: "forward slashes //",
   },
 ];
 
-start.addEventListener("click", function () {
-  question.textContent = questionArr[0].title;
-  choice1.textContent = questionArr[0].choices[0];
-  choice2.textContent = questionArr[0].choices[1];
-  choice3.textContent = questionArr[0].choices[2];
-  choice4.textContent = questionArr[0].choices[3];
+userFinal.style.visibility = "hidden";
+scoreStart.style.visibility = "hidden";
+start.addEventListener("click", startGame);
 
+function startGame() {
+  nextQuestion();
+  scoreStart.style.visibility = "visible";
   start.style.display = "none";
   document.getElementById("possible").style.visibility = "visible";
-  document.getElementById("next").style.visibility = "visible";
-});
+}
 
-choice1.addEventListener("click", function () {
-  response.textContent = "Correct!";
-  score = score + 10;
-  userScore.textContent = score;
-});
+function endGame() {
+  possible.style.visibility = "hidden";
+  question.style.visibility = "hidden";
+  response.style.visibility = "hidden";
+  next.style.visibility = "hidden";
+  scoreStart.style.visibility = "hidden";
+  userFinal.style.visibility = "visible";
+  finalScore.style.visibility = "visible";
 
-choice2.addEventListener("click", function () {
-  response.textContent = "Oops! looks like you got that one wrong!";
-});
+  
+  finalScore.textContent = score;
 
-choice3.addEventListener("click", function () {
-  response.textContent = "Oops! looks like you got that one wrong!";
-});
 
-choice4.addEventListener("click", function () {
-  response.textContent = "Oops! looks like you got that one wrong!";
-});
 
-next.addEventListener("click", function () {
-  response.style.display = "none";
-  question.textContent = questionArr[1].title;
-  choice1.textContent = questionArr[1].choices[0];
-  choice2.textContent = questionArr[1].choices[1];
-  choice3.textContent = questionArr[1].choices[2];
-  choice4.textContent = questionArr[1].choices[3];
-});
 
-choice1.addEventListener("click", function () {
-  response.textContent = "Oops! looks like you got that one wrong!";
-});
+}
+saveScore.addEventListener("click", submitScore);
 
-choice2.addEventListener("click", function () {
-  response.textContent = "Oops! looks like you got that one wrong!";
-});
+function submitScore() {
+  event.preventDefault;
+}
 
-choice3.addEventListener("click", function () {
-  response.textContent = "Correct!";
-  score = score + 10;
-  userScore.textContent = score;
-});
 
-choice4.addEventListener("click", function () {
-  response.textContent = "Oops! looks like you got that one wrong!";
-});
+function nextQuestion() {
+  response.style.visibility = "hidden";
+
+  question.textContent = questionArr[indexTracker].title;
+  choice1.textContent = questionArr[indexTracker].choices[0];
+  choice2.textContent = questionArr[indexTracker].choices[1];
+  choice3.textContent = questionArr[indexTracker].choices[2];
+  choice4.textContent = questionArr[indexTracker].choices[3];
+
+  possible.addEventListener("click", checkAnswer);
+}
+
+function checkAnswer() {
+  next.style.visibility = "visible";
+  var userInput = event.target.textContent;
+  var correctAnswer = questionArr[indexTracker].answer;
+  if (userInput === correctAnswer) {
+    response.textContent = "Correct!";
+    response.style.visibility = "visible";
+    score = score + 10;
+    userScore.textContent = score;
+  } else {
+    response.textContent = "Oops! looks like you got that one wrong!";
+    score = score - 10;
+    userScore.textContent = score;
+  }
+  indexTracker++;
+  if (indexTracker >= questionArr.length) {
+    next.style.display = "none";
+    endGame();
+  } else {
+    // nextQuestion();
+    next.addEventListener("click", nextQuestion);
+  }
+}
+
+
+var secondsLeft = 60;

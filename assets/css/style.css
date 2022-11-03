@@ -5,7 +5,8 @@ main {
   position: relative;
 }
 
-h2 {
+h2,
+#userFinal {
   color: #7f2982;
   text-align: center;
   text-shadow: 3px 2px 4px #ffb100;
@@ -14,7 +15,8 @@ h2 {
 
 .card {
   display: block;
-  background-color: #c2e7da;
+  background-color: #8ef6f8;
+
   border: 3px solid #7f2982;
   border-radius: 8px;
   box-shadow: rgb(60 64 67 / 30%) 0 1px 2px 0, rgb(60 64 67 / 15%) 0 1px 3px 1px;
@@ -44,13 +46,15 @@ p {
   max-width: 255px;
   padding: 20px 52px;
   text-align: center;
-  margin: 10px auto;
+  margin: 1px auto;
 }
 #possible,
 #next {
   visibility: hidden;
 }
-
+.card div {
+  color: #7f2982;
+}
 #possible button,
 #next {
   font-family: "Suez One", serif;
@@ -63,10 +67,24 @@ p {
   color: #7f2982;
   cursor: pointer;
   margin: 5px 0px;
+  min-width: 30px;
 }
 
 .next {
   position: absolute;
   right: 5px;
   bottom: 5px;
+}
+.submit {
+  font-family: "Suez One", serif;
+  font-size: 22px;
+  display: flex;
+  background-color: #ffb100;
+  border: 2px solid #7f2982;
+  box-shadow: 2px 2px 2px #7f2982;
+  border-radius: 8px;
+  color: #7f2982;
+  cursor: pointer;
+  margin: 5px 0px;
+  min-width: 60px;
 }
