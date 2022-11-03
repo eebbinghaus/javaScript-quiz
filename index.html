@@ -14,8 +14,9 @@
     />
   </head>
   <body>
-    <main class="card">
+    <section class="card">
       <div id="scoreStart">User Score: <span id="score"></span></div>
+      <div class="timer"></div>
       <h2>JavaScript Quiz</h2>
       <p id="para">
         Welcome to my JavaScript quiz! Answer as many questions as you can
@@ -24,14 +25,19 @@
       </p>
 
       <div id="userFinal">Final Score: <span id="finalScore"></span></div>
-      <form action="">
+      <form id="form">
         <input
           type="text"
           name="userName"
           id="userName"
           placeholder="username"
         />
-        <button type="submitScore" class="submitScore" id="saveScore">Save</button>
+        <button type="submitScore" class="submitScore" id="saveScore">
+          Save High Score!
+        </button>
+        <button type="highScore" class="highScore" id="highScore">
+          View High Scores
+        </button>
       </form>
 
       <div id="possible">
@@ -43,7 +49,7 @@
       <button id="start">Start Quiz</button>
       <p id="response"></p>
       <button class="next" id="next">Next Question</button>
-    </main>
+    </section>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

@@ -10,7 +10,8 @@ var next = document.getElementById("next");
 var userScore = document.getElementById("score");
 var finalScore = document.getElementById("finalScore");
 var scoreStart = document.getElementById("scoreStart");
-var saveScore = document.getElementById("saveScore")
+var saveScore = document.getElementById("saveScore");
+var timer = document.querySelector(".timer");
 var score = 0;
 var indexTracker = 0;
 var questionArr = [
@@ -40,12 +41,27 @@ var questionArr = [
     answer: "forward slashes //",
   },
 ];
-
+timer.style.visibility = "visible";
 userFinal.style.visibility = "hidden";
 scoreStart.style.visibility = "hidden";
+form.style.display = "none";
 start.addEventListener("click", startGame);
 
+var secondsLeft = 60;
+
+function setTime() {
+  var timerInterval = setInterval(function () {
+    secondsLeft--;
+    timer.textContent = secondsLeft + " seconds left!";
+    if (secondsLeft === 0) {
+      clearInterval(timerInterval);
+      endGame();
+    }
+  }, 1000);
+}
+
 function startGame() {
+  setTime();
   nextQuestion();
   scoreStart.style.visibility = "visible";
   start.style.display = "none";
@@ -60,20 +76,15 @@ function endGame() {
   scoreStart.style.visibility = "hidden";
   userFinal.style.visibility = "visible";
   finalScore.style.visibility = "visible";
-
-  
+  form.style.display = "flex";
   finalScore.textContent = score;
-
-
-
-
+  timer.style.visibility = "hidden";
 }
 saveScore.addEventListener("click", submitScore);
 
-function submitScore() {
+function submitScore(event) {
   event.preventDefault;
 }
-
 
 function nextQuestion() {
   response.style.visibility = "hidden";
@@ -98,7 +109,9 @@ function checkAnswer() {
     userScore.textContent = score;
   } else {
     response.textContent = "Oops! looks like you got that one wrong!";
+    response.style.visibility = "visible";
     score = score - 10;
+    secondsLeft = secondsLeft - 10;
     userScore.textContent = score;
   }
   indexTracker++;
@@ -110,6 +123,3 @@ function checkAnswer() {
     next.addEventListener("click", nextQuestion);
   }
 }
-
-
-var secondsLeft = 60;
