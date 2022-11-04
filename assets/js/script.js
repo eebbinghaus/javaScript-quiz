@@ -1,3 +1,5 @@
+// Global Variables
+
 var start = document.getElementById("start");
 var question = document.getElementById("para");
 var possible = document.getElementById("possible");
@@ -12,8 +14,12 @@ var finalScore = document.getElementById("finalScore");
 var scoreStart = document.getElementById("scoreStart");
 var saveScore = document.getElementById("saveScore");
 var timer = document.querySelector(".timer");
+var userName = document.getElementById("userName");
+var highScore = document.getElementById("highScore");
+var display = document.getElementById("display");
 var score = 0;
 var indexTracker = 0;
+var saveArray = [];
 var questionArr = [
   {
     title: "JavaScript arrays are written with ____ brackets?",
@@ -41,12 +47,17 @@ var questionArr = [
     answer: "forward slashes //",
   },
 ];
+
+// Hiding elements at start of game
 timer.style.visibility = "visible";
 userFinal.style.visibility = "hidden";
 scoreStart.style.visibility = "hidden";
 form.style.display = "none";
+
 start.addEventListener("click", startGame);
 
+
+// Function that controls my countdown timer
 var secondsLeft = 60;
 
 function setTime() {
@@ -59,7 +70,7 @@ function setTime() {
     }
   }, 1000);
 }
-
+// Game Starts
 function startGame() {
   setTime();
   nextQuestion();
@@ -67,7 +78,7 @@ function startGame() {
   start.style.display = "none";
   document.getElementById("possible").style.visibility = "visible";
 }
-
+// Game ends
 function endGame() {
   possible.style.visibility = "hidden";
   question.style.visibility = "hidden";
@@ -80,12 +91,28 @@ function endGame() {
   finalScore.textContent = score;
   timer.style.visibility = "hidden";
 }
-saveScore.addEventListener("click", submitScore);
 
+saveScore.addEventListener("click", submitScore);
+// Saves high score
 function submitScore(event) {
-  event.preventDefault;
+  event.preventDefault();
+  var userHighScore = userName.value + ", " + score;
+  console.log(saveArray);
+  saveArray = saveArray.concat(userHighScore);
+  localStorage.setItem("High Scores", JSON.stringify(saveArray));
+  console.log(saveArray);
 }
 
+highScore.addEventListener("click", seeScores);
+// View High Scores
+function seeScores(event) {
+  event.preventDefault();
+  var finalHighScores = JSON.parse(localStorage.getItem("High Scores"));
+  liElement = document.createElement("li");
+  liElement.textContent = finalHighScores;
+  display.append(liElement);
+}
+// Loads questions
 function nextQuestion() {
   response.style.visibility = "hidden";
 
@@ -97,7 +124,7 @@ function nextQuestion() {
 
   possible.addEventListener("click", checkAnswer);
 }
-
+// Checks the user answer
 function checkAnswer() {
   next.style.visibility = "visible";
   var userInput = event.target.textContent;
@@ -110,7 +137,6 @@ function checkAnswer() {
   } else {
     response.textContent = "Oops! looks like you got that one wrong!";
     response.style.visibility = "visible";
-    score = score - 10;
     secondsLeft = secondsLeft - 10;
     userScore.textContent = score;
   }

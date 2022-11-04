@@ -14,6 +14,7 @@
     />
   </head>
   <body>
+    <!--This section contains the instructions as well as the Score Keeper-->
     <section class="card">
       <div id="scoreStart">User Score: <span id="score"></span></div>
       <div class="timer"></div>
@@ -32,14 +33,16 @@
           id="userName"
           placeholder="username"
         />
+        <!--These are the buttons on the end game screen-->
         <button type="submitScore" class="submitScore" id="saveScore">
           Save High Score!
         </button>
         <button type="highScore" class="highScore" id="highScore">
           View High Scores
         </button>
+        <div id="display"></div>
       </form>
-
+<!--These are the answer buttons -->
       <div id="possible">
         <button id="choice1"></button>
         <button id="choice2"></button>
@@ -50,6 +53,7 @@
       <p id="response"></p>
       <button class="next" id="next">Next Question</button>
     </section>
+
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
