@@ -19,7 +19,7 @@ var highScore = document.getElementById("highScore");
 var display = document.getElementById("display");
 var score = 0;
 var indexTracker = 0;
-var saveArray = [];
+var saveArray;
 var questionArr = [
   {
     title: "JavaScript arrays are written with ____ brackets?",
@@ -46,7 +46,33 @@ var questionArr = [
     ],
     answer: "forward slashes //",
   },
+  {
+    title:
+      "Arrays in JavaScript are defined by which of the following statements?",
+    choices: [
+      "It is an ordered list of values",
+      "It is an ordered list of objects",
+      "It is an ordered list of strings",
+      "It is an ordered list of functions",
+    ],
+    answer: "It is an ordered list of values",
+  },
+  {
+    title:
+      "Which of the following can be used to call a JavaScript code snippet?",
+    choices: ["Triggering Event", "Preprocessor", "RMI", "Function / Method"],
+    answer: "Function / Method",
+  },
 ];
+
+function checkLocalStorage() {
+  if (localStorage.length === 0) {
+    saveArray = [];
+  } else {
+    saveArray = JSON.parse(localStorage.getItem("High Scores"));
+  }
+  return saveArray;
+}
 
 // Hiding elements at start of game
 timer.style.visibility = "visible";
@@ -54,8 +80,9 @@ userFinal.style.visibility = "hidden";
 scoreStart.style.visibility = "hidden";
 form.style.display = "none";
 
-start.addEventListener("click", startGame);
+checkLocalStorage();
 
+start.addEventListener("click", startGame);
 
 // Function that controls my countdown timer
 var secondsLeft = 60;
@@ -96,7 +123,7 @@ saveScore.addEventListener("click", submitScore);
 // Saves high score
 function submitScore(event) {
   event.preventDefault();
-  var userHighScore = userName.value + ", " + score;
+  var userHighScore = " " + userName.value + " - " + score + "        ";
   console.log(saveArray);
   saveArray = saveArray.concat(userHighScore);
   localStorage.setItem("High Scores", JSON.stringify(saveArray));
@@ -108,7 +135,7 @@ highScore.addEventListener("click", seeScores);
 function seeScores(event) {
   event.preventDefault();
   var finalHighScores = JSON.parse(localStorage.getItem("High Scores"));
-  liElement = document.createElement("li");
+  liElement = document.createElement("p");
   liElement.textContent = finalHighScores;
   display.append(liElement);
 }
